@@ -1,0 +1,23 @@
+@import './common.scss';
+
+.homepage{
+  @extend .page;
+  background-color: #4880E8;
+  flex-direction: column;
+  padding:10vw;
+}
+
+.card{
+  background-color:#5CBBFF;
+  width:80vw;
+  height:30vw;
+  border-radius: 5vw;
+  box-shadow: 1px 1px 3px #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title{
+  color:#FFF;
+}
