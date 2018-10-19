@@ -1,0 +1,85 @@
+@import './common.scss';
+
+.pageContainer {
+  @extend .page;
+  background-color: #4880E8;
+  flex-direction: column;
+}
+
+//.chapterTitle{
+//  background-color: #FFF;
+//  color:#333;
+//  padding:10px;
+//}
+
+.main {
+  padding: 10px;
+  color: #FFF;
+}
+
+.title {
+  margin-top: 30px;
+}
+
+.titleContent {
+  margin-top: 10px;
+}
+
+.optionBox {
+  @extend .titleContent
+}
+
+.option {
+  background-color: #FEFFFE;
+  width: 90vw;
+  min-height: 30px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px #333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.optionCorrect {
+  @extend .option;
+  background-color: #4EE1BF;
+}
+
+.optionWrong {
+  @extend .option;
+  background-color: #FFA58B;
+}
+
+.optionKey {
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.footer {
+  background-color: #FFF;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footerText {
+  color: #4880E8;
+  margin: 5px 10px;
+  font-size: 14px;
+}
+
+.footerTextCorrect {
+  @extend .footerText;
+  color: #4EE1BF;
+}
+
+.footerTextWrong {
+  @extend .footerText;
+  color: #FFA58B;
+}

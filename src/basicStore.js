@@ -3,14 +3,15 @@
  */
 import {createStore, compose} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+// import storage from 'redux-persist/lib/storage';
+import storageSession from 'redux-persist/lib/storage/session';
 
 import middleWare from './utils/middleware';
 import reducers from './reducers';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storageSession,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
