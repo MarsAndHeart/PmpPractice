@@ -7,6 +7,7 @@ import Hammer from 'react-hammerjs';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import Ripples from 'react-ripples';
 import styles from '../css/practice.scss';
 import practiceAction from '../actions/practice';
 
@@ -76,12 +77,16 @@ const Practice = (props) => {
           </div>
           <div className={styles['optionBox']}>
             {optionKeys.map((key)=>(
-              <Hammer key={key} onTap={()=>{handleTapOption(key);}}>
+              <Ripples
+                key={key}
+                color='rgba(71,128,232, 0.3)'
+                onClick={()=>{handleTapOption(key);}}
+              >
                 <div className={getOptionClassName(key)}>
                   <span className={styles['optionKey']}>{key}.</span>
                   <span>{options[key]}</span>
                 </div>
-              </Hammer>
+              </Ripples>
             ))}
           </div>
           {hasAnsweredThisQuestion && (
