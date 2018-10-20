@@ -23,16 +23,24 @@ const practiceWrongRecordStart = () => (store) => {
     questions:(_.get(wrongRecord,'questions') || []).map(q=>{
       const chapterId = _.get(q,'chapterId');
       const questionId = _.get(q,'questionId');
-      const targetChapterQuestions = _.get(chapters,`${chapterId}.questions`)||[];
-      const targetQuestion = targetChapterQuestions.find(ele=>ele.id===questionId);
-      return targetQuestion;
+      const targetChapter = chapters.find(ele=>ele.id===chapterId);
+      const targetChapterQuestions = _.get(targetChapter,'questions')||[];
+      const targetQuestion = targetChapterQuestions.find(item=>item.id===questionId);
+      return {
+        ...targetQuestion,
+        chapterId,
+      };
     }),
-    answers:(_.get(wrongRecord,'answers') || []).map(q=>{
-      const chapterId = _.get(q,'chapterId');
-      const questionId = _.get(q,'questionId');
-      const targetChapterAnswers = _.get(chapters,`${chapterId}.answers`)||[];
-      const targetAnswer = targetChapterAnswers.find(ele=>ele.id===questionId);
-      return targetAnswer;
+    answers:(_.get(wrongRecord,'answers') || []).map(a=>{
+      const chapterId = _.get(a,'chapterId');
+      const questionId = _.get(a,'questionId');
+      const targetChapter = chapters.find(ele=>ele.id===chapterId);
+      const targetChapterAnswers = _.get(targetChapter,'answers')||[];
+      const targetAnswer = targetChapterAnswers.find(item=>item.id===questionId);
+      return {
+        ...targetAnswer,
+        chapterId
+      };
     }),
   };
   return practiceStart(wrongRecordAsChapter);

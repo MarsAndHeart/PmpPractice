@@ -30,19 +30,16 @@ const setAnswers = (payload) => ({
 const addWrongRecord = () => (store) => {
   const currentWrongQuestions = _.get(store, 'wrongRecord.questions') || [];
   const currentQuestion = _.get(store, 'practice.currentQuestion');
-  const currentAnswer = _.get(store, 'practice.currentAnswer');
 
   const chapterId = _.get(store, 'practice.chapter.id') || '';
   const questionId = _.get(currentQuestion, 'id') || '';
 
   const question = {
-    ...currentQuestion,
     id: `${currentWrongQuestions.length+1}`,
     chapterId,
     questionId,
   };
   const answer = {
-    ...currentAnswer,
     id: `${currentWrongQuestions.length+1}`,
     chapterId,
     questionId,
@@ -66,7 +63,10 @@ const deleteWrongRecord = () => (store) => {
   const currentWrongQuestions = _.get(store, 'wrongRecord.questions') || [];
   const currentQuestion = _.get(store, 'practice.currentQuestion');
 
-  const chapterId = _.get(store, 'practice.chapter.id') || '';
+  let chapterId = _.get(store, 'practice.chapter.id') || '';
+  if(chapterId === 'wrongRecord'){
+    chapterId = _.get(currentQuestion,'chapterId');
+  }
   const questionId = _.get(currentQuestion, 'id') || '';
 
   const existsThisQuestion = currentWrongQuestions.find(q=>(

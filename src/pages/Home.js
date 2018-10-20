@@ -16,8 +16,12 @@ const Home = (props) => {
     props.history.push('/practice');
   };
   const practiceWrongRecordStart=()=>{
-    props.practiceWrongRecordStart();
-    props.history.push('/practice');
+    if(props.hadWrongRecord){
+      props.practiceWrongRecordStart();
+      props.history.push('/practice');
+    }else{
+      alert('暂无错题');
+    }
   };
   return(
     <div className={styles['pageContainer']} >
@@ -35,15 +39,18 @@ const Home = (props) => {
   );
 };
 Home.propTypes = {
-  wrongRecord: PropTypes.object,
+  hadWrongRecord: PropTypes.bool,
   practiceStart: PropTypes.func,
   practiceWrongRecordStart: PropTypes.func,
   history: PropTypes.object,
 };
 
-const propMapping = (store) => ({
-  wrongRecord: _.get(store, 'wrongRecord'),
-});
+const propMapping = (store) => {
+  const wrongQuestionNumber = (_.get(store, 'wrongRecord.questions')||[]).length;
+  return {
+    hadWrongRecord:wrongQuestionNumber>0,
+  };
+};
 
 const actionMapping = (dispatch) => {
   return {
