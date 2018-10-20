@@ -77,11 +77,7 @@ const Practice = (props) => {
           </div>
           <div className={styles['optionBox']}>
             {optionKeys.map((key)=>(
-              <Ripples
-                key={key}
-                color='rgba(71,128,232, 0.3)'
-                onClick={()=>{handleTapOption(key);}}
-              >
+              <Ripples key={key} color='rgba(71,128,232, 0.3)' onClick={()=>{handleTapOption(key);}} >
                 <div className={getOptionClassName(key)}>
                   <span className={styles['optionKey']}>{key}.</span>
                   <span>{options[key]}</span>

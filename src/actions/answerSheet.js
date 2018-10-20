@@ -3,9 +3,8 @@
  */
 import _ from 'lodash';
 
-const resetTotalNum = (payload) => ({
+const resetTotalNum = () => ({
   type:'answerSheet/resetTotalNum',
-  payload,
 });
 
 const setTotalNum = (payload) => ({
@@ -13,9 +12,8 @@ const setTotalNum = (payload) => ({
   payload,
 });
 
-const resetCorrectNum = (payload) => ({
+const resetCorrectNum = () => ({
   type:'answerSheet/resetCorrectNum',
-  payload,
 });
 
 const addCorrectNum = (payload) => ({
@@ -23,9 +21,8 @@ const addCorrectNum = (payload) => ({
   payload,
 });
 
-const resetWrongNum = (payload) => ({
+const resetWrongNum = () => ({
   type:'answerSheet/resetWrongNum',
-  payload,
 });
 
 const addWrongNum = (payload) => ({
@@ -33,9 +30,8 @@ const addWrongNum = (payload) => ({
   payload,
 });
 
-const resetSheets = (payload) => ({
+const resetSheets = () => ({
   type:'answerSheet/resetSheets',
-  payload,
 });
 
 const setSheets = (payload) => ({

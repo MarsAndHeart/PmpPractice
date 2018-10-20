@@ -3,6 +3,7 @@
  */
 
 const chapter2 = {
+  id: 'chapter2',
   title: '第二章:项目运行环境',
   questions: [],
   answers: [],

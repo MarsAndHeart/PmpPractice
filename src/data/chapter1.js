@@ -473,6 +473,7 @@ const questions = [
 ];
 
 const chapter1 = {
+  id: 'chapter1',
   title: '第一章:引论',
   questions,
   answers,
