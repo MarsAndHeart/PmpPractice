@@ -11,6 +11,7 @@ import reducers from './reducers';
 
 const persistConfig = {
   key: 'root',
+  // storage,
   storage: storageSession,
 };
 
