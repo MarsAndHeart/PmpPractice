@@ -3,7 +3,7 @@
  */
 
 const initialState = {
-  questionId: '',
+  questionIndex: 0,
   selectedOption: '',
   chapter: {},
   currentQuestion: {},
@@ -12,10 +12,16 @@ const initialState = {
 
 const practice = (state = initialState, action = '') => {
   switch (action.type) {
-  case 'practice/setQuestionId': {
+  case 'practice/setQuestionIndex': {
     return {
       ...state,
-      questionId: action.payload,
+      questionIndex: action.payload,
+    };
+  }
+  case 'practice/resetOption': {
+    return {
+      ...state,
+      selectedOption: '',
     };
   }
   case 'practice/selectOption': {

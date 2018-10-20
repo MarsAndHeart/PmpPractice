@@ -15,15 +15,18 @@ const Home = (props) => {
     props.practiceStart(chapter);
     props.history.push('/practice');
   };
+  const practiceWrongRecordStart=()=>{
+    props.practiceWrongRecordStart();
+    props.history.push('/practice');
+  };
   return(
     <div className={styles['pageContainer']} >
       <div className={styles['pageMain']} >
+        <div className={styles['cardWrongRecord']}  onClick={practiceWrongRecordStart}>
+          错题集
+        </div>
         {chapters.map(chapter=>(
-          <div
-            key={_.get(chapter,'title')}
-            className={styles['card']}
-            onClick={()=>{toPracticePage(chapter);}}
-          >
+          <div key={_.get(chapter,'title')} className={styles['card']} onClick={()=>{toPracticePage(chapter);}} >
             <div className={styles['title']} >{_.get(chapter,'title')}</div>
           </div>
         ))}
@@ -32,15 +35,21 @@ const Home = (props) => {
   );
 };
 Home.propTypes = {
+  wrongRecord: PropTypes.object,
   practiceStart: PropTypes.func,
+  practiceWrongRecordStart: PropTypes.func,
   history: PropTypes.object,
 };
 
+const propMapping = (store) => ({
+  wrongRecord: _.get(store, 'wrongRecord'),
+});
 
-function actionMapping(dispatch) {
+const actionMapping = (dispatch) => {
   return {
     practiceStart: compose(dispatch,homePageAction.practiceStart),
+    practiceWrongRecordStart: compose(dispatch,homePageAction.practiceWrongRecordStart),
   };
-}
+};
 
-export default connect(null,actionMapping)(Home);
+export default connect(propMapping,actionMapping)(Home);

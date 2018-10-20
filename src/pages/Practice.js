@@ -122,7 +122,7 @@ Practice.propTypes = {
 
 const propMapping = (store) => ({
   chapter: _.get(store, 'practice.chapter'),
-  questionId: _.get(store, 'practice.questionId'),
+  questionId: _.get(store, 'practice.currentQuestion.id'),
   selectedOption: _.get(store, 'practice.selectedOption'),
   currentQuestion: _.get(store, 'practice.currentQuestion'),
   currentAnswer: _.get(store, 'practice.currentAnswer'),
