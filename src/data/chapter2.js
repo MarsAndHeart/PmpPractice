@@ -203,7 +203,7 @@ const questions = [
       D: '项目经理应该不停的在各个团队成员之间进行巡视'
     }
   }
-]
+];
 
 const answers = [
   {
@@ -307,7 +307,7 @@ const answers = [
     explanation: '参考PMBOK47，面对虚拟团队，既要考虑物美价廉的沟通方式，也要强调沟通的重要性，确保信息传递到位。',
   },
 
-]
+];
 
 const chapter2 = {
   id: 'chapter2',
