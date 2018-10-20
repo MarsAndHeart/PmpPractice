@@ -85,7 +85,7 @@ const goPreQuestion = () => (store) => {
 const answerThisQuestion = (option) => (store) => {
   let answerIsCorrect = false;
 
-  const id = _.get(store, 'practice.questionId') || '';
+  const id = _.get(store, 'practice.currentQuestion.id') || '';
   const correct = _.get(store, 'practice.currentAnswer.correct') || '';
   if (correct === '') {
     return null;

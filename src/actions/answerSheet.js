@@ -55,7 +55,7 @@ const submitThisSheet = (sheet) => (store) => {
   const sheets = _.get(store,'answerSheet.sheets')||[];
   const newSheets = JSON.parse(JSON.stringify(sheets));
 
-  const id = _.get(store,'practice.questionId')||'unknown';
+  const id = _.get(store,'practice.currentQuestion.id')||'unknown';
   const index = newSheets.findIndex(s=>s.id===id);
 
   if(index!==-1){
