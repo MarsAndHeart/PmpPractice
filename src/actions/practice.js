@@ -66,18 +66,19 @@ const setQuestionByIndex = (index = 0) => (store) => {
 const goNextQuestion = () => (store) => {
   const index = _.get(store, 'practice.questionIndex');
   const questionTotalNum = _.get(store,'answerSheet.totalNum')||0;
-  const nextId = index + 1;
+  let nextId = index + 1;
   if(nextId>=questionTotalNum){
-    return null;
+    nextId = 0;
   }
   return setQuestionByIndex(nextId);
 };
 
 const goPreQuestion = () => (store) => {
   const index = _.get(store, 'practice.questionIndex');
-  const nextId = index - 1;
+  const questionTotalNum = _.get(store,'answerSheet.totalNum')||1;
+  let nextId = index - 1;
   if(nextId<0){
-    return null;
+    nextId = questionTotalNum - 1;
   }
   return setQuestionByIndex(nextId);
 };
