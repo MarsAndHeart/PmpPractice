@@ -38,7 +38,7 @@ const setQuestionByIndex = (index = 0) => (store) => {
   const questions = _.get(store, 'practice.chapter.questions') || [];
   const answers = _.get(store, 'practice.chapter.answers') || [];
   const currentQuestion = questions[index] || {id: 'unknown'};
-  const currentAnswer = answers[index] || {};
+  const currentAnswer = answers.find(a=>a.id===currentQuestion.id) || {};
 
   const sheets = _.get(store, 'answerSheet.sheets') || [];
   const answerSheetIndex = sheets.findIndex(s=>s.id === currentQuestion.id);
