@@ -13,7 +13,7 @@
 .card{
   background-color:#5CBBFF;
   width:90vw;
-  height:30vw;
+  height:12vw;
   border-radius: 3vw;
   box-shadow: 1px 1px 3px #333;
   display: flex;
@@ -22,32 +22,6 @@
   margin-bottom: 3vw;
 }
 
-.cardLastPractice{
-  @extend .card;
-  height: 16vw;
-}
-
-.cardWrongRecord{
-  @extend .card;
-  background-color:orange;
-}
-
-.cardChapterPractice{
-  @extend .card;
-  background-color:#2ED17E;
-}
-
-.cardHandPractice{
-  @extend .card;
-  background-color:#84DA34;
-}
-
-.cardUnitTest{
-  @extend .card;
-  background-color: #F3619A;
-}
-
 .title{
   color:#FFF;
-  font-size:20px;
 }

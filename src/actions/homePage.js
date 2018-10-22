@@ -29,6 +29,7 @@ const practiceWrongRecordStart = () => (store) => {
       return {
         ...targetQuestion,
         chapterId,
+        id:`${chapterId}-${questionId}`,
       };
     }),
     answers:(_.get(wrongRecord,'answers') || []).map(a=>{
@@ -39,7 +40,8 @@ const practiceWrongRecordStart = () => (store) => {
       const targetAnswer = targetChapterAnswers.find(item=>item.id===questionId);
       return {
         ...targetAnswer,
-        chapterId
+        chapterId,
+        id:`${chapterId}-${questionId}`,
       };
     }),
   };

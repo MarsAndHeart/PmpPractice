@@ -32,15 +32,18 @@ const addWrongRecord = () => (store) => {
   const currentQuestion = _.get(store, 'practice.currentQuestion');
 
   const chapterId = _.get(store, 'practice.chapter.id') || '';
+  if(chapterId === 'wrongRecord'){
+    return null;
+  }
   const questionId = _.get(currentQuestion, 'id') || '';
 
   const question = {
-    id: `${currentWrongQuestions.length+1}`,
+    id:`${chapterId}-${questionId}`,
     chapterId,
     questionId,
   };
   const answer = {
-    id: `${currentWrongQuestions.length+1}`,
+    id:`${chapterId}-${questionId}`,
     chapterId,
     questionId,
   };

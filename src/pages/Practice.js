@@ -10,12 +10,15 @@ import PropTypes from 'prop-types';
 import Ripples from 'react-ripples';
 import styles from '../css/practice.scss';
 import practiceAction from '../actions/practice';
+import chapterIdToName from '../utils/chapterIdToName';
 
 const Practice = (props) => {
   const {
     chapter,
+    chapterId,
     questionId,
     selectedOption,
+    questionIndex,
     currentQuestion,
     currentAnswer,
     totalNum,
@@ -64,6 +67,14 @@ const Practice = (props) => {
     }
   };
 
+  const questionOriginChapter = () => {
+    const chapterName =  chapterIdToName(chapterId);
+    if(chapterName!==''){
+      return ` (来源:${chapterName} 第${questionId.split('-')[1]}题)`;
+    }
+    return '';
+  };
+
   return (
     <Hammer onSwipeLeft={handleSwipeLeft} onSwipeRight={handleSwipeRight} className={styles['pageContainer']}>
       <div>
@@ -71,9 +82,10 @@ const Practice = (props) => {
           <div>{chapterTitle}</div>
           <div className={styles['title']}>
             {'题目'}
+            {questionOriginChapter()}
           </div>
           <div className={styles['titleContent']}>
-            {questionId+'、'+_.get(currentQuestion, 'title')}
+            {`${questionIndex+1}、${_.get(currentQuestion, 'title')}`}
           </div>
           <div className={styles['optionBox']}>
             {optionKeys.map((key)=>(
@@ -107,8 +119,10 @@ const Practice = (props) => {
 };
 Practice.propTypes = {
   chapter: PropTypes.object,
+  chapterId: PropTypes.string,
   questionId: PropTypes.string,
   selectedOption: PropTypes.string,
+  questionIndex: PropTypes.number,
   currentQuestion: PropTypes.object,
   currentAnswer: PropTypes.object,
   totalNum: PropTypes.number,
@@ -122,8 +136,10 @@ Practice.propTypes = {
 
 const propMapping = (store) => ({
   chapter: _.get(store, 'practice.chapter'),
+  chapterId: _.get(store, 'practice.currentQuestion.chapterId')||'',
   questionId: _.get(store, 'practice.currentQuestion.id'),
   selectedOption: _.get(store, 'practice.selectedOption'),
+  questionIndex: _.get(store, 'practice.questionIndex'),
   currentQuestion: _.get(store, 'practice.currentQuestion'),
   currentAnswer: _.get(store, 'practice.currentAnswer'),
 

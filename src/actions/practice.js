@@ -41,9 +41,9 @@ const setQuestionByIndex = (index = 0) => (store) => {
   const currentAnswer = answers.find(a=>a.id===currentQuestion.id) || {};
 
   const sheets = _.get(store, 'answerSheet.sheets') || [];
-  const answerSheetIndex = sheets.findIndex(s=>s.id === currentQuestion.id);
+  let answerSheetIndex = sheets.findIndex(s=>s.id === currentQuestion.id);
   if (answerSheetIndex !== -1) {
-    const thisSheet = sheets[index]; //表示已经回答过这个问题,要将刚才回答过的答案填进去
+    const thisSheet = sheets.find(s=>s.id===currentQuestion.id); //已经回答过这个问题,要将刚才回答过的答案填进去
     return [
       setQuestionIndex(index),
       resetOption(),

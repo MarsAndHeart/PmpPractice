@@ -7,12 +7,10 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from '../css/home.scss';
-import chapters from '../data/chapters';
 import homePageAction from '../actions/homePage';
 
 const Home = (props) => {
-  const toPracticePage=(chapter)=>{
-    props.practiceStart(chapter);
+  const goLastPractice = () => {
     props.history.push('/practice');
   };
   const practiceWrongRecordStart=()=>{
@@ -23,38 +21,51 @@ const Home = (props) => {
       alert('暂无错题');
     }
   };
+  const goChapterlist = () => {
+    props.history.push('/chapterList');
+  };
   return(
     <div className={styles['pageContainer']} >
       <div className={styles['pageMain']} >
-        <div className={styles['cardWrongRecord']}  onClick={practiceWrongRecordStart}>
-          错题集
-        </div>
-        {chapters.map(chapter=>(
-          <div key={_.get(chapter,'title')} className={styles['card']} onClick={()=>{toPracticePage(chapter);}} >
-            <div className={styles['title']} >{_.get(chapter,'title')}</div>
+        {props.hasLastPractice && (
+          <div className={styles['cardLastPractice']} onClick={goLastPractice} >
+            <div className={styles['title']} >继续上一次答题</div>
           </div>
-        ))}
+        )}
+        <div className={styles['cardWrongRecord']} onClick={practiceWrongRecordStart}>
+          <div className={styles['title']} >错题集</div>
+        </div>
+        <div className={styles['cardChapterPractice']} onClick={goChapterlist} >
+          <div className={styles['title']} >分章练习</div>
+        </div>
+        {/*<div className={styles['cardHandPractice']} onClick={goChapterlist} >
+          <div className={styles['title']} >随手练</div>
+        </div>*/}
+        {/*<div className={styles['cardUnitTest']} onClick={goChapterlist} >
+          <div className={styles['title']} >单元测试</div>
+        </div>*/}
       </div>
     </div>
   );
 };
 Home.propTypes = {
   hadWrongRecord: PropTypes.bool,
-  practiceStart: PropTypes.func,
+  hasLastPractice: PropTypes.bool,
   practiceWrongRecordStart: PropTypes.func,
   history: PropTypes.object,
 };
 
 const propMapping = (store) => {
   const wrongQuestionNumber = (_.get(store, 'wrongRecord.questions')||[]).length;
+  const lastPracticeQuestionNum = _.get(store,'answerSheet.totalNum')||0;
   return {
     hadWrongRecord:wrongQuestionNumber>0,
+    hasLastPractice:lastPracticeQuestionNum>0,
   };
 };
 
 const actionMapping = (dispatch) => {
   return {
-    practiceStart: compose(dispatch,homePageAction.practiceStart),
     practiceWrongRecordStart: compose(dispatch,homePageAction.practiceWrongRecordStart),
   };
 };
