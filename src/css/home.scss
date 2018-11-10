@@ -47,6 +47,11 @@
   background-color: #F3619A;
 }
 
+.mockTest{
+  @extend .card;
+  background-color: #8476FF;
+}
+
 .title{
   color:#FFF;
   font-size:20px;

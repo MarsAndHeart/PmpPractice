@@ -104,7 +104,7 @@ const Practice = (props) => {
           )}
           {hasAnsweredThisQuestion && (
             <div className={styles['titleContent']}>
-              {`答案:${correct}, ${explanation}`}
+              {`答案:${correct}\n${explanation}`}
             </div>
           )}
         </div>

@@ -24,6 +24,12 @@ const Home = (props) => {
   const goChapterlist = () => {
     props.history.push('/chapterList');
   };
+  const goUnitTestlist = () => {
+    props.history.push('/unitTestList');
+  };
+  const goMockTestList = () => {
+    props.history.push('/mockTestList');
+  };
   return(
     <div className={styles['pageContainer']} >
       <div className={styles['pageMain']} >
@@ -41,9 +47,12 @@ const Home = (props) => {
         {/*<div className={styles['cardHandPractice']} onClick={goChapterlist} >
           <div className={styles['title']} >随手练</div>
         </div>*/}
-        {/*<div className={styles['cardUnitTest']} onClick={goChapterlist} >
+        <div className={styles['cardUnitTest']} onClick={goUnitTestlist} >
           <div className={styles['title']} >单元测试</div>
-        </div>*/}
+        </div>
+        <div className={styles['mockTest']} onClick={goMockTestList} >
+          <div className={styles['title']} >模拟题</div>
+        </div>
       </div>
     </div>
   );
