@@ -8,10 +8,15 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from '../css/home.scss';
 import homePageAction from '../actions/homePage';
+import wrongRecordAction from '../actions/wrongRecord';
 
 const Home = (props) => {
   const goLastPractice = () => {
     props.history.push('/practice');
+  };
+  const clearWrongRecords = () => {
+    props.clearWrongRecords();
+    alert('已清空错题');
   };
   const practiceWrongRecordStart=()=>{
     if(props.hadWrongRecord){
@@ -38,6 +43,11 @@ const Home = (props) => {
             <div className={styles['title']} >继续上一次答题</div>
           </div>
         )}
+        {props.hadWrongRecord && (
+          <div className={styles['cardLastPractice']} onClick={clearWrongRecords} >
+            <div className={styles['title']} >清空错题集</div>
+          </div>
+        )}
         <div className={styles['cardWrongRecord']} onClick={practiceWrongRecordStart}>
           <div className={styles['title']} >错题集</div>
         </div>
@@ -61,6 +71,7 @@ Home.propTypes = {
   hadWrongRecord: PropTypes.bool,
   hasLastPractice: PropTypes.bool,
   practiceWrongRecordStart: PropTypes.func,
+  clearWrongRecords: PropTypes.func,
   history: PropTypes.object,
 };
 
@@ -76,6 +87,7 @@ const propMapping = (store) => {
 const actionMapping = (dispatch) => {
   return {
     practiceWrongRecordStart: compose(dispatch,homePageAction.practiceWrongRecordStart),
+    clearWrongRecords: compose(dispatch,wrongRecordAction.resetWrongRecord),
   };
 };
 
